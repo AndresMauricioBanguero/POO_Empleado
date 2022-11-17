@@ -1,2 +1,5 @@
-package com.github.sonyesplay;public class Employee {
+package com.github.sonyesplay;
+
+public class Employee {
+
 }
