@@ -111,3 +111,5 @@ buildNumber.properties
 .idea/compiler.xml
 .idea/jarRepositories.xml
 .idea/workspace.xml
+.git/info/exclude
+/.idea

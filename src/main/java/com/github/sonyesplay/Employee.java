@@ -11,6 +11,41 @@ public class Employee {
         double netSalary = valueH * hours;
         return netSalary;
     }
+//metodo para verificar si debe tener auxilio de transporte
+    public boolean auxTransport() {
+        boolean aux;
+        if (salary <= 1_000_000) {
+            aux = true;
+        } else {
+            aux = false;
+        }
+
+        return aux;
+    }
+//metodo para verificar si debe tener a retencion en la fuente
+    public boolean rentention() {
+        boolean aux;
+        if (salary > 7_000_000) {
+            aux = true;
+        } else {
+            aux = false;
+        }
+
+        return aux;
+    }
+//metodo para validar cual es el salario total
+    public double salaryTotal() {
+        double salaryT;
+        if (auxTransport() == true) {
+            salaryT = computeNetSalary() + 65000;
+        } else if (rentention() == true) {
+            salaryT = computeNetSalary() - (salary * 0.05);
+        } else {
+            salaryT = computeNetSalary();
+        }
+        return salaryT;
+    }
+
 
     public String getName() {
         return name;

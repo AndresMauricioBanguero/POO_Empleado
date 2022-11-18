@@ -8,6 +8,7 @@ public class Main {
         employee.setHours(160);
 
         double netSalary =employee.computeNetSalary();
-        System.out.println(netSalary);
+
+        System.out.println("estes es el salario"+ netSalary);
     }
 }
