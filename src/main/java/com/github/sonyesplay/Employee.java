@@ -1,17 +1,44 @@
 package com.github.sonyesplay;
 
+import java.util.Objects;
+
 public class Employee {
     private String name;
     private double salary;
+
     private int hours;
 
+    public Employee(String name, double salary, int hours) {
+        valitation(name, salary, hours);
+        this.name = name;
+        this.salary = salary;
+        this.hours = hours;
+    }
+
+    //metodo para validar la entrada de los datos
+    private void valitation(String name, double salary, double hours) {
+        Objects.requireNonNull(name, "El nombre no puede ser nulo");
+        if (salary <= 0) {
+            throw new IllegalStateException("El salario debe ser mayor a cero");
+        }
+        if (hours <= 0) {
+            throw new IllegalStateException("Las horas trabajadas deben ser mayor a cero");
+        }
+    }
+
     //metodo para calcular el salario neto
+    public double valueHour() {
+        double valueH;
+        return valueH = salary / 160;
+    }
+
     public double computeNetSalary() {
-        double valueH = salary / 160;
-        double netSalary = valueH * hours;
+        double netSalary;
+        netSalary = valueHour() * hours;
         return netSalary;
     }
-//metodo para verificar si debe tener auxilio de transporte
+
+    //metodo para verificar si debe tener auxilio de transporte
     public boolean auxTransport() {
         boolean aux;
         if (salary <= 1_000_000) {
@@ -22,7 +49,8 @@ public class Employee {
 
         return aux;
     }
-//metodo para verificar si debe tener a retencion en la fuente
+
+    //metodo para verificar si debe tener a retencion en la fuente
     public boolean rentention() {
         boolean aux;
         if (salary > 7_000_000) {
@@ -33,7 +61,8 @@ public class Employee {
 
         return aux;
     }
-//metodo para validar cual es el salario total
+
+    //metodo para validar cual es el salario total
     public double salaryTotal() {
         double salaryT;
         if (auxTransport() == true) {
@@ -46,28 +75,25 @@ public class Employee {
         return salaryT;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
 
-    public String getName() {
-        return name;
-    }
+        builder.append("DESPRENDIBLE DE PAGO\n");
+        builder.append("_________________________________________________\n");
+        builder.append("Nombre: ").append(name).append("\n");
+        builder.append("Salario: ").append(salary).append("\n");
+        builder.append("Horas trabajadas: ").append(hours).append("\n");
+        builder.append("Valor hora: ").append(valueHour()).append("\n");
+        if (auxTransport() == true) {
+            builder.append("Auxilio de transporte: ").append(65000).append("\n");
+        } else builder.append("Auxilio de transporte: ").append("no tiene auxilio").append("\n");
+        if (rentention() == true) {
+            builder.append("Retención: ").append((salary * 0.05)).append("\n");
+        } else builder.append("Auxilio de transporte: ").append("no tiene retencion").append("\n");
+        builder.append("Total a pagar: ").append(salaryTotal()).append("\n");
+        builder.append("_________________________________________________\n");
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-
-    public int getHours() {
-        return hours;
-    }
-
-    public void setHours(int hours) {
-        this.hours = hours;
+        return builder.toString();
     }
 }
