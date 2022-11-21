@@ -3,10 +3,10 @@ package com.github.sonyesplay;
 import java.util.Objects;
 
 public class Employee {
-    private String name;
-    private double salary;
+    private final String name;
+    private final double salary;
 
-    private int hours;
+    private final int hours;
 
     public Employee(String name, double salary, int hours) {
         valitation(name, salary, hours);
@@ -28,8 +28,7 @@ public class Employee {
 
     //metodo para calcular el salario neto
     public double valueHour() {
-        double valueH;
-        return valueH = salary / 160;
+        return salary / 160;
     }
 
     public double computeNetSalary() {
@@ -41,11 +40,7 @@ public class Employee {
     //metodo para verificar si debe tener auxilio de transporte
     public boolean auxTransport() {
         boolean aux;
-        if (salary <= 1_000_000) {
-            aux = true;
-        } else {
-            aux = false;
-        }
+        aux = salary <= 1_000_000;
 
         return aux;
     }
@@ -53,11 +48,7 @@ public class Employee {
     //metodo para verificar si debe tener a retencion en la fuente
     public boolean rentention() {
         boolean aux;
-        if (salary > 7_000_000) {
-            aux = true;
-        } else {
-            aux = false;
-        }
+        aux = salary > 7_000_000;
 
         return aux;
     }
@@ -65,9 +56,9 @@ public class Employee {
     //metodo para validar cual es el salario total
     public double salaryTotal() {
         double salaryT;
-        if (auxTransport() == true) {
+        if (auxTransport()) {
             salaryT = computeNetSalary() + 65000;
-        } else if (rentention() == true) {
+        } else if (rentention()) {
             salaryT = computeNetSalary() - (salary * 0.05);
         } else {
             salaryT = computeNetSalary();
@@ -85,10 +76,10 @@ public class Employee {
         builder.append("Salario: ").append(salary).append("\n");
         builder.append("Horas trabajadas: ").append(hours).append("\n");
         builder.append("Valor hora: ").append(valueHour()).append("\n");
-        if (auxTransport() == true) {
+        if (auxTransport()) {
             builder.append("Auxilio de transporte: ").append(65000).append("\n");
         } else builder.append("Auxilio de transporte: ").append("no tiene auxilio").append("\n");
-        if (rentention() == true) {
+        if (rentention()) {
             builder.append("Retención: ").append((salary * 0.05)).append("\n");
         } else builder.append("Auxilio de transporte: ").append("no tiene retencion").append("\n");
         builder.append("Total a pagar: ").append(salaryTotal()).append("\n");
